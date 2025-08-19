@@ -368,6 +368,26 @@
         .tab-content.active {
             display: block;
         }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -439,7 +459,7 @@
         </div>
 
         <!-- City Detail Views -->
-        <div id="amsterdam-view" class="city-detail">
+        <div id="amsterdam-view" class="city-detail" data-city="Amsterdam">
             <div class="breadcrumbs">
                 <span class="breadcrumb" id="home-link">Home</span>
                 <span class="breadcrumb-separator">/</span>
@@ -472,7 +492,7 @@
                             <div class="poi-desc">Historic house and museum dedicated to Jewish wartime diarist Anne Frank</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Anne Frank House"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -482,7 +502,7 @@
                             <div class="poi-desc">Art museum dedicated to the works of Vincent van Gogh and his contemporaries</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Van Gogh Museum"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -492,7 +512,7 @@
                             <div class="poi-desc">Dutch national museum dedicated to arts and history in Amsterdam</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Rijksmuseum"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -502,7 +522,7 @@
                             <div class="poi-desc">Historic house and art museum where Rembrandt lived and worked</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Rembrandt House Museum"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -512,7 +532,7 @@
                             <div class="poi-desc">Farm-to-table dining in a greenhouse setting</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="De Kas Restaurant"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -522,7 +542,7 @@
                             <div class="poi-desc">Neighborhood with historic windmills and houses</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Zaanse Schans"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -532,7 +552,7 @@
                             <div class="poi-desc">Vibrant district with market, cafes, and boutiques</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="De Pijp Neighborhood"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -547,7 +567,7 @@
             </div>
         </div>
 
-        <div id="lucerne-view" class="city-detail">
+        <div id="lucerne-view" class="city-detail" data-city="Lucerne">
             <div class="breadcrumbs">
                 <span class="breadcrumb" id="home-link-lucerne">Home</span>
                 <span class="breadcrumb-separator">/</span>
@@ -580,7 +600,7 @@
                             <div class="poi-desc">Historic wooden bridge spanning the Reuss River</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Chapel Bridge Lucerne"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -590,7 +610,7 @@
                             <div class="poi-desc">Rock relief commemorating Swiss Guards who died during the French Revolution</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Lion Monument Lucerne"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -600,7 +620,7 @@
                             <div class="poi-desc">Luxurious 5-star hotel with stunning lake views</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Hotel Schweizerhof Luzern"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -610,7 +630,7 @@
                             <div class="poi-desc">Unique dining experience in a horse-drawn carriage. <a href="https://www.restaurant-pfistern.ch/en/fondue-carriage" class="external-link" target="_blank">View details</a></div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Restaurant Pfistern Lucerne"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -625,7 +645,7 @@
             </div>
         </div>
 
-        <div id="vienna-view" class="city-detail">
+        <div id="vienna-view" class="city-detail" data-city="Vienna">
             <div class="breadcrumbs">
                 <span class="breadcrumb" id="home-link-vienna">Home</span>
                 <span class="breadcrumb-separator">/</span>
@@ -658,7 +678,7 @@
                             <div class="poi-desc">Former imperial summer residence with beautiful gardens</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Schönbrunn Palace Vienna"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -668,7 +688,7 @@
                             <div class="poi-desc">Historic building complex with art museum and beautiful gardens</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="Belvedere Palace Vienna"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -678,7 +698,7 @@
                             <div class="poi-desc">Magnificent Gothic cathedral in the heart of Vienna</div>
                         </div>
                         <div class="poi-actions">
-                            <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn map-btn" data-poi="St. Stephen's Cathedral Vienna"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
@@ -693,7 +713,7 @@
             </div>
         </div>
 
-        <div id="innsbruck-view" class="city-detail">
+        <div id="innsbruck-view" class="city-detail" data-city="Innsbruck">
             <div class="breadcrumbs">
                 <span class="breadcrumb" id="home-link-innsbruck">Home</span>
                 <span class="breadcrumb-separator">/</span>
@@ -711,7 +731,7 @@
             </div>
         </div>
 
-        <div id="madrid-view" class="city-detail">
+        <div id="madrid-view" class="city-detail" data-city="Madrid">
             <div class="breadcrumbs">
                 <span class="breadcrumb" id="home-link-madrid">Home</span>
                 <span class="breadcrumb-separator">/</span>
@@ -733,6 +753,8 @@
     <footer>
         <p>Modern European Travel Planner &copy; 2023</p>
     </footer>
+
+    <div class="toast" id="toast">Google Maps link copied to clipboard!</div>
 
     <script>
         // City navigation
@@ -844,13 +866,39 @@
             });
         });
 
-        // Map buttons - would open Google Maps in real implementation
+        // Map buttons - Generate Google Maps links
         document.querySelectorAll('.map-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                const poiItem = this.closest('.poi-item');
-                const poiName = poiItem.querySelector('.poi-name').textContent;
-                alert(`This would open Google Maps for ${poiName} in the full implementation.`);
+                const poi = this.getAttribute('data-poi');
+                const cityElement = this.closest('.city-detail');
+                const city = cityElement.getAttribute('data-city');
+                
+                // Generate Google Maps URL
+                const query = encodeURIComponent(`${poi}, ${city}`);
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(mapsUrl).then(() => {
+                    // Show toast notification
+                    const toast = document.getElementById('toast');
+                    toast.textContent = `Google Maps link for ${poi} copied to clipboard!`;
+                    toast.classList.add('show');
+                    
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }).catch(err => {
+                    // Fallback: open in new tab if clipboard fails
+                    window.open(mapsUrl, '_blank');
+                });
             });
+        });
+
+        // Show active tab buttons on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('amsterdam-poi-btn').classList.add('btn-secondary');
+            document.getElementById('lucerne-poi-btn').classList.add('btn-secondary');
+            document.getElementById('vienna-poi-btn').classList.add('btn-secondary');
         });
     </script>
 </body>
