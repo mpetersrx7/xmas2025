@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>European Winter Trip Planner</title>
+    <title>Amsterdam Travel Planner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #7dd3fc;
-            --accent: #f97316;
-            --light: #f3f4f6;
-            --dark: #1f2937;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary: #1a5276;
+            --primary-dark: #154360;
+            --secondary: #aed6f1;
+            --accent: #e67e22;
+            --light: #f8f9f9;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius: 10px;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
@@ -29,10 +29,10 @@
         }
 
         body {
-            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdfa 100%);
+            background: linear-gradient(to bottom, #e8f4f8, #d1e7f5);
             color: var(--dark);
             min-height: 100vh;
-            padding-bottom: 80px;
+            line-height: 1.6;
         }
 
         .container {
@@ -43,118 +43,82 @@
 
         header {
             text-align: center;
-            padding: 20px 0;
+            padding: 25px 0;
             margin-bottom: 30px;
-            background: white;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
+            font-size: 2.8rem;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: var(--dark);
-            opacity: 0.8;
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .cities-grid {
+        .nav-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .city-card {
-            background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .city-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .city-image {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .city-dates {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            font-weight: bold;
-        }
-
-        .city-content {
-            padding: 20px;
-        }
-
-        .city-name {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-dark);
+            margin-bottom: 30px;
         }
 
         .btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: var(--primary);
-            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: white;
+            color: var(--primary);
             border: none;
             border-radius: var(--radius);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             text-align: center;
             text-decoration: none;
-            margin-bottom: 15px;
             box-shadow: var(--shadow);
         }
 
+        .btn i {
+            margin-right: 12px;
+            font-size: 1.4rem;
+        }
+
         .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
             background: var(--secondary);
-            color: var(--dark);
         }
 
-        .btn-secondary:hover {
-            background: #60a5fa;
+        .btn-map {
+            background: var(--primary);
+            color: white;
         }
 
-        .btn-accent {
+        .btn-hotels {
             background: var(--accent);
+            color: white;
         }
 
-        .btn-accent:hover {
-            background: #ea580c;
+        .btn-favorites {
+            background: var(--success);
+            color: white;
         }
 
         .section {
             background: white;
             border-radius: var(--radius);
-            padding: 20px;
+            padding: 25px;
             margin-bottom: 30px;
             box-shadow: var(--shadow);
         }
@@ -163,41 +127,80 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             color: var(--primary);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
         }
 
-        .neighborhoods {
+        .section-title i {
+            margin-right: 12px;
+        }
+
+        .days-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .neighborhood {
+        .day-card {
             background: var(--light);
-            padding: 15px;
             border-radius: var(--radius);
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
-        .neighborhood:hover {
-            background: #e5e7eb;
-            transform: translateX(5px);
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .day-header {
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .day-content {
+            padding: 20px;
+        }
+
+        .time-block {
+            margin-bottom: 20px;
+        }
+
+        .time-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .time-title i {
+            margin-right: 8px;
+            color: var(--accent);
         }
 
         .poi-list {
             list-style: none;
+            margin-left: 10px;
         }
 
         .poi-item {
-            padding: 15px;
-            background: var(--light);
+            padding: 12px;
+            background: white;
             border-radius: var(--radius);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
         }
 
         .poi-info {
@@ -208,6 +211,12 @@
             font-weight: bold;
             margin-bottom: 5px;
             font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .poi-desc {
+            color: #666;
+            font-size: 0.95rem;
         }
 
         .poi-actions {
@@ -241,283 +250,667 @@
             background: var(--success);
         }
 
-        .map-container {
-            position: relative;
-            margin: 20px 0;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
+        .food-tours {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
         }
 
-        .city-map {
-            width: 100%;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .pin {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-
-        .pin:after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-radius: 50%;
-            top: 6px;
-            left: 6px;
-        }
-
-        .pin:hover {
-            transform: rotate(-45deg) scale(1.2);
-        }
-
-        .hotel-list {
-            list-style: none;
-        }
-
-        .hotel-item {
+        .tour-card {
+            background: var(--light);
             padding: 20px;
-            background: var(--light);
             border-radius: var(--radius);
-            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
         }
 
-        .hotel-name {
-            font-size: 1.3rem;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .hotel-address {
-            color: #6b7280;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumbs {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            font-size: 1.2rem;
+        .tour-name {
             font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
         }
 
-        .breadcrumb {
-            color: var(--primary);
-            cursor: pointer;
-        }
-
-        .breadcrumb:hover {
-            text-decoration: underline;
-        }
-
-        .breadcrumb-separator {
-            color: #9ca3af;
-        }
-
-        .favorites-list {
-            list-style: none;
-        }
-
-        .favorite-item {
-            padding: 15px;
-            background: var(--light);
+        .tour-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
             border-radius: var(--radius);
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: between;
-            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tour-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #6b7280;
+            margin-top: 50px;
+            padding: 25px;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
         }
 
-        /* Responsive adjustments */
+        .download-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .instructions {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .file-btn {
+            display: inline-block;
+            padding: 14px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            margin: 10px 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .file-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
-            .cities-grid {
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-buttons {
                 grid-template-columns: 1fr;
             }
             
-            .neighborhoods {
+            .days-container {
                 grid-template-columns: 1fr;
             }
+            
+            .food-tours {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            background-color: #fff9e6;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--accent);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>European Winter Trip Planner</h1>
-            <p class="subtitle">Plan your perfect winter getaway across Europe</p>
+            <h1>Amsterdam Travel Planner</h1>
+            <p class="subtitle">Your complete guide to exploring the beautiful canals, museums, and culture of Amsterdam</p>
         </header>
 
-        <div class="breadcrumbs">
-            <span class="breadcrumb">Home</span>
+        <div class="nav-buttons">
+            <button class="btn btn-map">
+                <i class="fas fa-map-marked-alt"></i> Interactive Map
+            </button>
+            <button class="btn btn-hotels">
+                <i class="fas fa-hotel"></i> Hotels & Accommodation
+            </button>
+            <button class="btn btn-favorites">
+                <i class="fas fa-star"></i> My Favorites
+            </button>
         </div>
 
-        <div class="cities-grid">
-            <div class="city-card" data-city="lucerne">
-                <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1603712610494-7e6bcdc511f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
-                    <div class="city-dates">Dec 24 - Dec 27</div>
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-alt"></i> 4-Day Amsterdam Itinerary
+            </h2>
+            
+            <div class="days-container">
+                <div class="day-card">
+                    <div class="day-header">Day 1: Historic Center & Canals</div>
+                    <div class="day-content">
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-utensils"></i> Quick Lunch</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Broodje Bert</div>
+                                        <div class="poi-desc">Famous Dutch sandwiches</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Winkel 43</div>
+                                        <div class="poi-desc">Apple pie and soup</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-walking"></i> Afternoon</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Jordaan & 9 Straatjes</div>
+                                        <div class="poi-desc">Quaint canals and boutique shops</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Anne Frank House</div>
+                                        <div class="poi-desc"><span class="highlight">Book weeks ahead!</span></div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Westerkerk Tower</div>
+                                        <div class="poi-desc">Indoor climb with city views</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-moon"></i> Evening</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Covered Canal Cruise</div>
+                                        <div class="poi-desc">With glühwein - perfect winter activity</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Moeders</div>
+                                        <div class="poi-desc">Dutch comfort food</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Foodhallen</div>
+                                        <div class="poi-desc">Indoor food market</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="city-content">
-                    <h2 class="city-name">Lucerne</h2>
-                    <p>Swiss charm with alpine vistas and a beautiful lake.</p>
+                
+                <div class="day-card">
+                    <div class="day-header">Day 2: Museums & Winter Vibes</div>
+                    <div class="day-content">
+                        <!-- Content for Day 2 -->
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-sun"></i> Morning</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Van Gogh Museum</div>
+                                        <div class="poi-desc">Pre-book tickets</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Rijksmuseum</div>
+                                        <div class="poi-desc">Rembrandt, Vermeer - skip if short on time</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-cloud-sun"></i> Afternoon</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">The Avocado Show</div>
+                                        <div class="poi-desc">Healthy & insta-worthy</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Black & Blue</div>
+                                        <div class="poi-desc">Cozy steakhouse</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Vondelpark</div>
+                                        <div class="poi-desc">Winter walk if dry</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-moon"></i> Evening</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Café 't Smalle</div>
+                                        <div class="poi-desc">Mulled wine at historic brown café</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Restaurant Floreyn</div>
+                                        <div class="poi-desc">Modern Dutch cuisine</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="city-card" data-city="innsbruck">
-                <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1598966739957-47a41a71dce4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
-                    <div class="city-dates">Dec 27 - Dec 29</div>
+                
+                <div class="day-card">
+                    <div class="day-header">Day 3: Local Life & Fine Dining</div>
+                    <div class="day-content">
+                        <!-- Content for Day 3 -->
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-sun"></i> Morning</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Albert Cuyp Market</div>
+                                        <div class="poi-desc">Try stroopwafels & Dutch cheese</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Heineken Experience</div>
+                                        <div class="poi-desc">If you like beer - otherwise skip</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-cloud-sun"></i> Afternoon</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">De Bakkerswinkel</div>
+                                        <div class="poi-desc">Quaint tearoom</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Rembrandt House Museum</div>
+                                        <div class="poi-desc">Where he painted Night Watch</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-moon"></i> Evening</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Restaurant Bougainville</div>
+                                        <div class="poi-desc">Michelin-starred, Dam Square views</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">De Kas</div>
+                                        <div class="poi-desc">Farm-to-table in a greenhouse</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="city-content">
-                    <h2 class="city-name">Innsbruck</h2>
-                    <p>Imperial and modern against the backdrop of the Alps.</p>
-                </div>
-            </div>
-
-            <div class="city-card" data-city="vienna">
-                <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1571771014-1edf7e0cd929?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
-                    <div class="city-dates">Dec 29 - Jan 1</div>
-                </div>
-                <div class="city-content">
-                    <h2 class="city-name">Vienna</h2>
-                    <p>Imperial palaces, museums, and vibrant Christmas markets.</p>
-                </div>
-            </div>
-
-            <div class="city-card" data-city="madrid">
-                <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
-                    <div class="city-dates">Jan 1 - Jan 5</div>
-                </div>
-                <div class="city-content">
-                    <h2 class="city-name">Madrid</h2>
-                    <p>Vibrant capital with art, culture, and amazing food.</p>
+                
+                <div class="day-card">
+                    <div class="day-header">Day 4: Day Trip or Local Highlights</div>
+                    <div class="day-content">
+                        <!-- Content for Day 4 -->
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-map-signs"></i> Option 1: Day Trip</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Zaanse Schans</div>
+                                        <div class="poi-desc">Windmills + cheese tasting (20 min away)</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Haarlem</div>
+                                        <div class="poi-desc">Medieval charm + Christmas markets (15 min by train)</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-map-pin"></i> Option 2: Amsterdam Highlights</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">A'DAM Lookout</div>
+                                        <div class="poi-desc">Indoor sky deck with heated swings</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">NDSM Wharf</div>
+                                        <div class="poi-desc">Hipster street art - take the free ferry</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="time-block">
+                            <div class="time-title"><i class="fas fa-moon"></i> Evening</div>
+                            <ul class="poi-list">
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Café de Klos</div>
+                                        <div class="poi-desc">Best ribs in Amsterdam</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                                <li class="poi-item">
+                                    <div class="poi-info">
+                                        <div class="poi-name">Bistro Bar Spek</div>
+                                        <div class="poi-desc">Cozy French-Dutch cuisine</div>
+                                    </div>
+                                    <div class="poi-actions">
+                                        <button class="action-btn map-btn"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <h2 class="section-title">Next Steps</h2>
-            <p>This travel planner helps you organize your trip details. Click on a city to view:</p>
-            <ul>
-                <li>Interactive map with points of interest</li>
-                <li>Neighborhood guides</li>
-                <li>Hotel information</li>
-                <li>Your favorite saved places</li>
-            </ul>
-            <p style="margin-top: 20px; font-style: italic;">
-                Note: This is a demo version. Add your specific details to customize it for your trip.
-            </p>
+            <h2 class="section-title">
+                <i class="fas fa-utensils"></i> Food Tours
+            </h2>
+            
+            <div class="food-tours">
+                <div class="tour-card">
+                    <div class="tour-name">Eating Europe: Jordaan Food and Drinks Tour</div>
+                    <p>Explore the Jordaan district while sampling delicious Dutch foods and drinks.</p>
+                    <a href="https://www.eatingeurope.com/amsterdam/jordaan-food-tour/" class="tour-link" target="_blank">View Tour</a>
+                </div>
+                
+                <div class="tour-card">
+                    <div class="tour-name">Eating Amsterdam: Albert Cuyp Market and the Pijp Food Tour</div>
+                    <p>Discover the vibrant Pijp neighborhood and taste local specialties at Albert Cuyp Market.</p>
+                    <a href="https://www.eatingeurope.com/amsterdam/albert-cuyp-market-tour/" class="tour-link" target="_blank">View Tour</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2 class="section-title">
+                <i class="fas fa-download"></i> Download Your Travel Planner
+            </h2>
+            
+            <div class="instructions">
+                <h3>How to Download and Use:</h3>
+                <ol>
+                    <li>Right-click on the page and select "Save As" to save the complete HTML file</li>
+                    <li>Open the file in any web browser to access your travel planner</li>
+                    <li>Use the star icons to save your favorite places (data saved in your browser)</li>
+                    <li>Click on the map icons to get directions (will open Google Maps)</li>
+                </ol>
+            </div>
+            
+            <div>
+                <a href="#" class="file-btn" onclick="downloadTravelPlan()">
+                    <i class="fas fa-file-download"></i> Download Complete Travel Plan
+                </a>
+            </div>
+            
+            <div class="instructions">
+                <h3>Tips for Your Amsterdam Trip:</h3>
+                <ul>
+                    <li>Book Anne Frank House tickets <strong>weeks in advance</strong></li>
+                    <li>Consider purchasing a Museumkaart for museum discounts</li>
+                    <li>Use public transportation (OV-chipkaart) or walk - Amsterdam is very walkable</li>
+                    <li>Try traditional Dutch foods like stroopwafels, bitterballen, and herring</li>
+                </ul>
+            </div>
         </div>
     </div>
 
+    <footer>
+        <p>Amsterdam Travel Planner &copy; 2023 | Created with <i class="fas fa-heart" style="color: #e74c3c;"></i> for your perfect trip</p>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sample data structure
-            const travelData = {
-                lucerne: {
-                    name: "Lucerne",
-                    dates: "Dec 24 - Dec 27",
-                    neighborhoods: {
-                        oldtown: {
-                            name: "Old Town",
-                            pois: [
-                                { name: "Chapel Bridge", lat: 47.0514, lng: 8.3055 },
-                                { name: "Lion Monument", lat: 47.0584, lng: 8.3108 }
-                            ],
-                            station: "Lucerne Station"
-                        },
-                        lakefront: {
-                            name: "Lakefront",
-                            pois: [
-                                { name: "Lake Lucerne Promenade", lat: 47.0517, lng: 8.3077 },
-                                { name: "Swiss Museum of Transport", lat: 47.0516, lng: 8.3367 }
-                            ],
-                            station: "Lucerne Pier"
-                        }
-                    },
-                    hotels: [
-                        { name: "Grand Hotel National", address: "Haldenstrasse 4, 6006 Lucerne" },
-                        { name: "Hotel des Balances", address: "Am Weinmarkt, 6004 Lucerne" }
-                    ]
-                },
-                innsbruck: {
-                    name: "Innsbruck",
-                    dates: "Dec 27 - Dec 29",
-                    neighborhoods: {
-                        oldtown: {
-                            name: "Old Town",
-                            pois: [
-                                { name: "Golden Roof", lat: 47.2685, lng: 11.3935 },
-                                { name: "Innsbruck Cathedral", lat: 47.2692, lng: 11.3927 }
-                            ],
-                            station: "Innsbruck Hauptbahnhof"
-                        },
-                        hungerburg: {
-                            name: "Hungerburg",
-                            pois: [
-                                { name: "Nordkette Cable Car", lat: 47.2671, lng: 11.3953 },
-                                { name: "Alpenzoo Innsbruck", lat: 47.2800, lng: 11.4000 }
-                            ],
-                            station: "Hungerburgbahn Station"
-                        }
-                    },
-                    hotels: [
-                        { name: "Grand Hotel Europa", address: "Südtiroler Platz 2, 6020 Innsbruck" },
-                        { name: "Stage 12 Hotel", address: "Maria-Theresien-Strasse 12, 6020 Innsbruck" }
-                    ]
+        // Initialize favorites
+        if (!localStorage.getItem('amsterdamFavorites')) {
+            localStorage.setItem('amsterdamFavorites', JSON.stringify([]));
+        }
+
+        // Add event listeners to all buttons
+        document.querySelectorAll('.star-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const poiItem = this.closest('.poi-item');
+                const poiName = poiItem.querySelector('.poi-name').textContent;
+                let favorites = JSON.parse(localStorage.getItem('amsterdamFavorites'));
+                
+                if (favorites.includes(poiName)) {
+                    favorites = favorites.filter(item => item !== poiName);
+                    this.innerHTML = '<i class="fas fa-star"></i>';
+                    this.style.background = 'var(--warning)';
+                } else {
+                    favorites.push(poiName);
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.style.background = 'var(--success)';
                 }
-            };
-
-            // City navigation
-            const cityCards = document.querySelectorAll('.city-card');
-            cityCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const city = card.getAttribute('data-city');
-                    showCityView(city);
-                });
-            });
-
-            function showCityView(city) {
-                alert(`Would show detailed view for ${city}. This is a demo - add your implementation here.`);
-                // Implementation would include:
-                // 1. Updating breadcrumbs
-                // 2. Showing city-specific sections (Map, Hotels, Favorites buttons)
-                // 3. Displaying neighborhood buttons
-                // 4. Setting up the map view with pins
-            }
-
-            // Sample favorites functionality
-            const favoriteButtons = document.querySelectorAll('.star-btn');
-            favoriteButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    btn.classList.toggle('active');
-                    alert('Favorite saved! This would be persisted to localStorage in the full implementation.');
-                });
+                
+                localStorage.setItem('amsterdamFavorites', JSON.stringify(favorites));
             });
         });
+
+        // Map buttons - open Google Maps
+        document.querySelectorAll('.map-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const poiItem = this.closest('.poi-item');
+                const poiName = poiItem.querySelector('.poi-name').textContent;
+                const searchQuery = encodeURIComponent(poiName + ' Amsterdam');
+                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank');
+            });
+        });
+
+        // Navigation buttons
+        document.querySelector('.btn-map').addEventListener('click', function() {
+            alert('Interactive map feature would open here. This would show your saved locations and points of interest.');
+        });
+
+        document.querySelector('.btn-hotels').addEventListener('click', function() {
+            alert('Hotel information would be displayed here. You could save your hotel details and see them on the map.');
+        });
+
+        document.querySelector('.btn-favorites').addEventListener('click', function() {
+            const favorites = JSON.parse(localStorage.getItem('amsterdamFavorites'));
+            if (favorites.length === 0) {
+                alert("You haven't saved any favorites yet. Click the star icon on places to save them.");
+            } else {
+                alert('Your saved favorites: ' + favorites.join(', '));
+            }
+        });
+
+        // Download function
+        function downloadTravelPlan() {
+            const filename = "Amsterdam_Travel_Plan.html";
+            const htmlContent = document.documentElement.outerHTML;
+            
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(htmlContent));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Initialize star buttons based on saved favorites
+        function initializeFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('amsterdamFavorites'));
+            document.querySelectorAll('.poi-item').forEach(item => {
+                const poiName = item.querySelector('.poi-name').textContent;
+                const starBtn = item.querySelector('.star-btn');
+                
+                if (favorites.includes(poiName)) {
+                    starBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    starBtn.style.background = 'var(--success)';
+                }
+            });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', initializeFavorites);
     </script>
 </body>
 </html>
