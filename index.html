@@ -259,25 +259,19 @@
 
         .map-container {
             margin: 25px 0;
-            height: 400px;
-            background: #e5e7eb;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             box-shadow: var(--shadow);
+            border: 1px solid #ddd;
         }
 
-        .map-placeholder {
-            text-align: center;
-            color: #6b7280;
-            padding: 30px;
-        }
-
-        .map-placeholder i {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .hotel-list {
@@ -365,6 +359,10 @@
             .section-title {
                 font-size: 1.8rem;
             }
+            
+            .map-container {
+                height: 400px;
+            }
         }
 
         .add-later {
@@ -374,6 +372,13 @@
             border: 2px dashed #dee2e6;
             margin: 20px 0;
             color: #6c757d;
+        }
+        
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
         }
     </style>
 </head>
@@ -459,15 +464,17 @@
                 <h2 class="section-title">Amsterdam</h2>
                 <p>Explore the beautiful canals, museums, and vibrant neighborhoods of Amsterdam from December 13-17.</p>
                 
-                <button class="btn">
-                    <i class="fas fa-map-marked-alt"></i> View Map
-                </button>
-                <button class="btn btn-secondary">
-                    <i class="fas fa-hotel"></i> Hotels
-                </button>
-                <button class="btn">
-                    <i class="fas fa-star"></i> Favorites
-                </button>
+                <div class="nav-buttons">
+                    <button class="btn">
+                        <i class="fas fa-map-marked-alt"></i> View Map
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn">
+                        <i class="fas fa-star"></i> Favorites
+                    </button>
+                </div>
             </div>
 
             <div class="section">
@@ -549,12 +556,7 @@
             <div class="section">
                 <h2 class="section-title">Interactive Map</h2>
                 <div class="map-container">
-                    <div class="map-placeholder">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Amsterdam Interactive Map</h3>
-                        <p>All points of interest would be displayed on this interactive map</p>
-                        <p>Hotel pins would also appear here when added</p>
-                    </div>
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1_OCNSQYEQdhQlJK0S0cUUGldE7wFP8I&ehbc=2E312F" width="100%" height="100%"></iframe>
                 </div>
             </div>
         </div>
@@ -570,15 +572,17 @@
                 <h2 class="section-title">Lucerne</h2>
                 <p>Explore the beautiful Swiss city of Lucerne from December 24-27.</p>
                 
-                <button class="btn">
-                    <i class="fas fa-map-marked-alt"></i> View Map
-                </button>
-                <button class="btn btn-secondary">
-                    <i class="fas fa-hotel"></i> Hotels
-                </button>
-                <button class="btn">
-                    <i class="fas fa-star"></i> Favorites
-                </button>
+                <div class="nav-buttons">
+                    <button class="btn">
+                        <i class="fas fa-map-marked-alt"></i> View Map
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn">
+                        <i class="fas fa-star"></i> Favorites
+                    </button>
+                </div>
             </div>
 
             <div class="section">
@@ -676,9 +680,11 @@
         });
 
         homeLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                showHomeView();
-            });
+            if (link.id.includes('home-link') || link.id === 'home-link') {
+                link.addEventListener('click', () => {
+                    showHomeView();
+                });
+            }
         });
 
         function showCityView(city) {
