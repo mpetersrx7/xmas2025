@@ -114,18 +114,6 @@
             margin-bottom: 12px;
             color: var(--dark);
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .device-indicator {
-            font-size: 0.8rem;
-            padding: 4px 8px;
-            border-radius: 20px;
-            background: var(--primary);
-            color: white;
-            display: inline-block;
         }
 
         .btn {
@@ -299,6 +287,7 @@
         .breadcrumb {
             color: var(--primary);
             cursor: pointer;
+            text-decoration: none;
         }
 
         .breadcrumb:hover {
@@ -341,10 +330,6 @@
             
             .map-container {
                 height: 400px;
-            }
-            
-            .device-indicator {
-                display: none;
             }
         }
 
@@ -426,7 +411,7 @@
 
             <div class="cities-grid">
                 <div class="city-card" data-city="amsterdam">
-                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1548544149-4835e62ee5b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
+                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1512476446317-0c85f3a6aa98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
                         <div class="city-dates">Dec 13 - Dec 17</div>
                     </div>
                     <div class="city-content">
@@ -436,7 +421,7 @@
                 </div>
 
                 <div class="city-card" data-city="lucerne">
-                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1603712610494-7e6bcdc511f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
+                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1596526131083-e8b5f5d0e6d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
                         <div class="city-dates">Dec 24 - Dec 27</div>
                     </div>
                     <div class="city-content">
@@ -446,7 +431,7 @@
                 </div>
 
                 <div class="city-card" data-city="innsbruck">
-                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1598966739957-47a41a71dce4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
+                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1549478059-9b8c4c5f235c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
                         <div class="city-dates">Dec 27 - Dec 29</div>
                     </div>
                     <div class="city-content">
@@ -456,7 +441,7 @@
                 </div>
 
                 <div class="city-card" data-city="vienna">
-                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1571771014-1edf7e0cd929?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
+                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
                         <div class="city-dates">Dec 29 - Jan 1</div>
                     </div>
                     <div class="city-content">
@@ -466,7 +451,7 @@
                 </div>
 
                 <div class="city-card" data-city="madrid">
-                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
+                    <div class="city-image" style="background-image: url('https://images.unsplash.com/photo-1612299030152-743bb354aa31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80');">
                         <div class="city-dates">Jan 1 - Jan 5</div>
                     </div>
                     <div class="city-content">
@@ -486,13 +471,13 @@
         <!-- City Detail Views -->
         <div id="amsterdam-view" class="city-detail" data-city="Amsterdam">
             <div class="breadcrumbs">
-                <span class="breadcrumb" id="home-link">Home</span>
+                <a href="#" class="breadcrumb" id="home-link">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Amsterdam</span>
             </div>
 
             <div class="section">
-                <h2 class="section-title">Amsterdam <span class="device-indicator" id="device-indicator">Desktop Mode</span></h2>
+                <h2 class="section-title">Amsterdam</h2>
                 <p>Explore the beautiful canals, museums, and vibrant neighborhoods of Amsterdam from December 13-17.</p>
                 
                 <div class="nav-buttons">
@@ -505,11 +490,6 @@
                     <button class="btn btn-accent">
                         <i class="fas fa-hotel"></i> Hotels
                     </button>
-                </div>
-                
-                <div class="help-text">
-                    <i class="fas fa-info-circle"></i> 
-                    <span id="map-help">Clicking map icons will open Google Maps in a new tab</span>
                 </div>
             </div>
 
@@ -599,13 +579,13 @@
 
         <div id="lucerne-view" class="city-detail" data-city="Lucerne">
             <div class="breadcrumbs">
-                <span class="breadcrumb" id="home-link-lucerne">Home</span>
+                <a href="#" class="breadcrumb" id="home-link-lucerne">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Lucerne</span>
             </div>
 
             <div class="section">
-                <h2 class="section-title">Lucerne <span class="device-indicator">Desktop Mode</span></h2>
+                <h2 class="section-title">Lucerne</h2>
                 <p>Explore the beautiful Swiss city of Lucerne from December 24-27.</p>
                 
                 <div class="nav-buttons">
@@ -618,11 +598,6 @@
                     <button class="btn btn-accent">
                         <i class="fas fa-hotel"></i> Hotels
                     </button>
-                </div>
-                
-                <div class="help-text">
-                    <i class="fas fa-info-circle"></i> 
-                    <span>Clicking map icons will open Google Maps in a new tab</span>
                 </div>
             </div>
 
@@ -682,13 +657,13 @@
 
         <div id="vienna-view" class="city-detail" data-city="Vienna">
             <div class="breadcrumbs">
-                <span class="breadcrumb" id="home-link-vienna">Home</span>
+                <a href="#" class="breadcrumb" id="home-link-vienna">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Vienna</span>
             </div>
 
             <div class="section">
-                <h2 class="section-title">Vienna <span class="device-indicator">Desktop Mode</span></h2>
+                <h2 class="section-title">Vienna</h2>
                 <p>Explore the beautiful Austrian capital of Vienna from December 29 to January 1.</p>
                 
                 <div class="nav-buttons">
@@ -701,11 +676,6 @@
                     <button class="btn btn-accent">
                         <i class="fas fa-hotel"></i> Hotels
                     </button>
-                </div>
-                
-                <div class="help-text">
-                    <i class="fas fa-info-circle"></i> 
-                    <span>Clicking map icons will open Google Maps in a new tab</span>
                 </div>
             </div>
 
@@ -742,6 +712,36 @@
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Hofburg</div>
+                            <div class="poi-desc">Former imperial palace and current official residence of the Austrian president</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Hofburg Vienna"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Vienna State Opera</div>
+                            <div class="poi-desc">Historic opera house and one of the busiest opera venues in the world</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Vienna State Opera"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Viennese Giant Ferris Wheel</div>
+                            <div class="poi-desc">Iconic ferris wheel in the Prater amusement park</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Viennese Giant Ferris Wheel"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
@@ -755,7 +755,7 @@
 
         <div id="innsbruck-view" class="city-detail" data-city="Innsbruck">
             <div class="breadcrumbs">
-                <span class="breadcrumb" id="home-link-innsbruck">Home</span>
+                <a href="#" class="breadcrumb" id="home-link-innsbruck">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Innsbruck</span>
             </div>
@@ -764,16 +764,66 @@
                 <h2 class="section-title">Innsbruck</h2>
                 <p>Explore the beautiful Austrian city of Innsbruck from December 27-29.</p>
                 
-                <div class="add-later">
-                    <i class="fas fa-plus-circle"></i>
-                    <p>City details to be added later</p>
+                <div class="nav-buttons">
+                    <button class="btn" id="innsbruck-poi-btn">
+                        <i class="fas fa-map-marker-alt"></i> Points of Interest
+                    </button>
+                    <button class="btn btn-secondary" id="innsbruck-map-btn">
+                        <i class="fas fa-map-marked-alt"></i> Interactive Map
+                    </button>
+                    <button class="btn btn-accent">
+                        <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                </div>
+            </div>
+
+            <div class="section tab-content active" id="innsbruck-poi">
+                <h2 class="section-title">Points of Interest</h2>
+                <ul class="poi-list">
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Nordkette</div>
+                            <div class="poi-desc">Mountain range accessible via cable car with stunning views of Innsbruck</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Nordkette Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Court Church</div>
+                            <div class="poi-desc">Gothic church with the tomb of Emperor Maximilian I</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Court Church Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Altstadt von Innsbruck</div>
+                            <div class="poi-desc">Historic old town with colorful buildings and medieval architecture</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Altstadt von Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section tab-content" id="innsbruck-map">
+                <h2 class="section-title">Interactive Map</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1qkcOeNUvtIpcOPMOiZz4D4yI6obW2GM&ehbc=2E312F" width="100%" height="100%"></iframe>
                 </div>
             </div>
         </div>
 
         <div id="madrid-view" class="city-detail" data-city="Madrid">
             <div class="breadcrumbs">
-                <span class="breadcrumb" id="home-link-madrid">Home</span>
+                <a href="#" class="breadcrumb" id="home-link-madrid">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Madrid</span>
             </div>
@@ -782,9 +832,59 @@
                 <h2 class="section-title">Madrid</h2>
                 <p>Explore the beautiful Spanish capital of Madrid from January 1-5.</p>
                 
-                <div class="add-later">
-                    <i class="fas fa-plus-circle"></i>
-                    <p>City details to be added later</p>
+                <div class="nav-buttons">
+                    <button class="btn" id="madrid-poi-btn">
+                        <i class="fas fa-map-marker-alt"></i> Points of Interest
+                    </button>
+                    <button class="btn btn-secondary" id="madrid-map-btn">
+                        <i class="fas fa-map-marked-alt"></i> Interactive Map
+                    </button>
+                    <button class="btn btn-accent">
+                        <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                </div>
+            </div>
+
+            <div class="section tab-content active" id="madrid-poi">
+                <h2 class="section-title">Points of Interest</h2>
+                <ul class="poi-list">
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Parque del Retiro</div>
+                            <div class="poi-desc">Beautiful park with gardens, monuments, and a large boating lake</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Parque del Retiro Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Museo Nacional del Prado</div>
+                            <div class="poi-desc">Spain's main national art museum, featuring European art from the 12th to early 20th century</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Museo Nacional del Prado Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Mercado San Miguel</div>
+                            <div class="poi-desc">Iconic covered market with gourmet tapas and traditional Spanish products</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Mercado San Miguel Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section tab-content" id="madrid-map">
+                <h2 class="section-title">Interactive Map</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=18cSHWdfTP4af9L7uBQZdJ8922_7Vdmw&ehbc=2E312F" width="100%" height="100%"></iframe>
                 </div>
             </div>
         </div>
@@ -802,23 +902,6 @@
             return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
         }
         
-        // Update UI based on device
-        function updateDeviceUI() {
-            const isMobile = isMobileDevice();
-            const deviceIndicator = document.getElementById('device-indicator');
-            const mapHelp = document.getElementById('map-help');
-            
-            if (isMobile) {
-                if (deviceIndicator) deviceIndicator.textContent = "Mobile Mode";
-                if (mapHelp) mapHelp.textContent = "Clicking map icons will open the Google Maps app";
-            } else {
-                if (deviceIndicator) deviceIndicator.textContent = "Desktop Mode";
-                if (mapHelp) mapHelp.textContent = "Clicking map icons will open Google Maps in a new tab";
-            }
-            
-            return isMobile;
-        }
-        
         // City navigation
         const cityCards = document.querySelectorAll('.city-card');
         const cityViews = document.querySelectorAll('.city-detail');
@@ -833,11 +916,10 @@
         });
 
         homeLinks.forEach(link => {
-            if (link.id.includes('home-link') || link.id === 'home-link') {
-                link.addEventListener('click', () => {
-                    showHomeView();
-                });
-            }
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showHomeView();
+            });
         });
 
         function showCityView(city) {
@@ -847,9 +929,6 @@
             });
             document.getElementById(`${city}-view`).style.display = 'block';
             window.scrollTo(0, 0);
-            
-            // Update device UI when switching cities
-            updateDeviceUI();
         }
 
         function showHomeView() {
@@ -860,50 +939,36 @@
             window.scrollTo(0, 0);
         }
 
-        // Tab functionality for Amsterdam
-        document.getElementById('amsterdam-poi-btn').addEventListener('click', () => {
-            document.getElementById('amsterdam-poi').classList.add('active');
-            document.getElementById('amsterdam-map').classList.remove('active');
-            document.getElementById('amsterdam-poi-btn').classList.add('btn-secondary');
-            document.getElementById('amsterdam-map-btn').classList.remove('btn-secondary');
-        });
+        // Tab functionality for all cities
+        const setupTabButtons = (poiBtnId, mapBtnId, poiContentId, mapContentId) => {
+            const poiBtn = document.getElementById(poiBtnId);
+            const mapBtn = document.getElementById(mapBtnId);
+            const poiContent = document.getElementById(poiContentId);
+            const mapContent = document.getElementById(mapContentId);
 
-        document.getElementById('amsterdam-map-btn').addEventListener('click', () => {
-            document.getElementById('amsterdam-map').classList.add('active');
-            document.getElementById('amsterdam-poi').classList.remove('active');
-            document.getElementById('amsterdam-map-btn').classList.add('btn-secondary');
-            document.getElementById('amsterdam-poi-btn').classList.remove('btn-secondary');
-        });
+            if (poiBtn && mapBtn && poiContent && mapContent) {
+                poiBtn.addEventListener('click', () => {
+                    poiContent.classList.add('active');
+                    mapContent.classList.remove('active');
+                    poiBtn.classList.add('btn-secondary');
+                    mapBtn.classList.remove('btn-secondary');
+                });
 
-        // Tab functionality for Lucerne
-        document.getElementById('lucerne-poi-btn').addEventListener('click', () => {
-            document.getElementById('lucerne-poi').classList.add('active');
-            document.getElementById('lucerne-map').classList.remove('active');
-            document.getElementById('lucerne-poi-btn').classList.add('btn-secondary');
-            document.getElementById('lucerne-map-btn').classList.remove('btn-secondary');
-        });
+                mapBtn.addEventListener('click', () => {
+                    mapContent.classList.add('active');
+                    poiContent.classList.remove('active');
+                    mapBtn.classList.add('btn-secondary');
+                    poiBtn.classList.remove('btn-secondary');
+                });
+            }
+        };
 
-        document.getElementById('lucerne-map-btn').addEventListener('click', () => {
-            document.getElementById('lucerne-map').classList.add('active');
-            document.getElementById('lucerne-poi').classList.remove('active');
-            document.getElementById('lucerne-map-btn').classList.add('btn-secondary');
-            document.getElementById('lucerne-poi-btn').classList.remove('btn-secondary');
-        });
-
-        // Tab functionality for Vienna
-        document.getElementById('vienna-poi-btn').addEventListener('click', () => {
-            document.getElementById('vienna-poi').classList.add('active');
-            document.getElementById('vienna-map').classList.remove('active');
-            document.getElementById('vienna-poi-btn').classList.add('btn-secondary');
-            document.getElementById('vienna-map-btn').classList.remove('btn-secondary');
-        });
-
-        document.getElementById('vienna-map-btn').addEventListener('click', () => {
-            document.getElementById('vienna-map').classList.add('active');
-            document.getElementById('vienna-poi').classList.remove('active');
-            document.getElementById('vienna-map-btn').classList.add('btn-secondary');
-            document.getElementById('vienna-poi-btn').classList.remove('btn-secondary');
-        });
+        // Set up tabs for each city
+        setupTabButtons('amsterdam-poi-btn', 'amsterdam-map-btn', 'amsterdam-poi', 'amsterdam-map');
+        setupTabButtons('lucerne-poi-btn', 'lucerne-map-btn', 'lucerne-poi', 'lucerne-map');
+        setupTabButtons('vienna-poi-btn', 'vienna-map-btn', 'vienna-poi', 'vienna-map');
+        setupTabButtons('innsbruck-poi-btn', 'innsbruck-map-btn', 'innsbruck-poi', 'innsbruck-map');
+        setupTabButtons('madrid-poi-btn', 'madrid-map-btn', 'madrid-poi', 'madrid-map');
 
         // Initialize favorites
         if (!localStorage.getItem('travelFavorites')) {
@@ -966,12 +1031,19 @@
 
         // Show active tab buttons on page load
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('amsterdam-poi-btn').classList.add('btn-secondary');
-            document.getElementById('lucerne-poi-btn').classList.add('btn-secondary');
-            document.getElementById('vienna-poi-btn').classList.add('btn-secondary');
+            // Set POI tabs as active by default
+            const poiButtons = [
+                'amsterdam-poi-btn',
+                'lucerne-poi-btn',
+                'vienna-poi-btn',
+                'innsbruck-poi-btn',
+                'madrid-poi-btn'
+            ];
             
-            // Update device UI on load
-            updateDeviceUI();
+            poiButtons.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                if (btn) btn.classList.add('btn-secondary');
+            });
         });
     </script>
 </body>
