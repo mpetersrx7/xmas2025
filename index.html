@@ -207,6 +207,9 @@
 
         .poi-info {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .poi-name {
@@ -281,13 +284,14 @@
             gap: 12px;
             margin-bottom: 35px;
             font-size: 1.1rem;
-            font-weight: 500;
+            font-weight: 700;
         }
 
         .breadcrumb {
             color: var(--primary);
             cursor: pointer;
             text-decoration: none;
+            font-weight: 700;
         }
 
         .breadcrumb:hover {
@@ -330,6 +334,10 @@
             
             .map-container {
                 height: 400px;
+            }
+            
+            .nav-buttons {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -397,6 +405,147 @@
             padding: 10px;
             background: var(--light);
             border-radius: var(--radius);
+        }
+
+        /* Itinerary styles */
+        .itinerary {
+            margin-top: 30px;
+        }
+        
+        .itinerary-day {
+            margin-bottom: 30px;
+        }
+        
+        .itinerary-day-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .itinerary-time {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .itinerary-activities {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .itinerary-activities ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        
+        .itinerary-activities li {
+            margin-bottom: 8px;
+        }
+        
+        .itinerary-food {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-top: 10px;
+        }
+        
+        .itinerary-food-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .itinerary-note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        
+        .itinerary-option {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        
+        .food-tour {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 30px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .food-tour-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        /* Hotel styles */
+        .hotel-item {
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .hotel-item:hover {
+            transform: translateX(5px);
+        }
+
+        .hotel-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hotel-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .hotel-address {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .hotel-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Favorites styles */
+        .favorites-empty {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+        }
+
+        .favorites-empty i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #dee2e6;
+        }
+
+        .starred {
+            color: #ffc107 !important;
         }
     </style>
 </head>
@@ -468,10 +617,10 @@
             </div>
         </div>
 
-        <!-- City Detail Views -->
+        <!-- Amsterdam Detail View -->
         <div id="amsterdam-view" class="city-detail" data-city="Amsterdam">
             <div class="breadcrumbs">
-                <a href="#" class="breadcrumb" id="home-link">Home</a>
+                <a href="#" class="breadcrumb home-link">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Amsterdam</span>
             </div>
@@ -481,14 +630,20 @@
                 <p>Explore the beautiful canals, museums, and vibrant neighborhoods of Amsterdam from December 13-17.</p>
                 
                 <div class="nav-buttons">
-                    <button class="btn" id="amsterdam-poi-btn">
+                    <button class="btn btn-secondary" id="amsterdam-poi-btn">
                         <i class="fas fa-map-marker-alt"></i> Points of Interest
                     </button>
-                    <button class="btn btn-secondary" id="amsterdam-map-btn">
+                    <button class="btn" id="amsterdam-map-btn">
                         <i class="fas fa-map-marked-alt"></i> Interactive Map
                     </button>
-                    <button class="btn btn-accent">
+                    <button class="btn" id="amsterdam-itinerary-btn">
+                        <i class="fas fa-calendar-alt"></i> Suggested Itinerary
+                    </button>
+                    <button class="btn" id="amsterdam-hotels-btn">
                         <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn" id="amsterdam-favorites-btn">
+                        <i class="fas fa-star"></i> Favorites
                     </button>
                 </div>
             </div>
@@ -575,11 +730,188 @@
                     <iframe src="https://www.google.com/maps/d/embed?mid=1_OCNSQYEQdhQlJK0S0cUUGldE7wFP8I&ehbc=2E312F" width="100%" height="100%"></iframe>
                 </div>
             </div>
+
+            <div class="section tab-content" id="amsterdam-itinerary">
+                <h2 class="section-title">Suggested Itinerary</h2>
+                
+                <div class="itinerary">
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 1: Arrival, Check-In & Ease Into Amsterdam</h3>
+                        
+                        <div class="itinerary-time">Late Morning / Early Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Arrive, check into hotel/Airbnb</strong> (drop bags if early)</li>
+                                <li>Quick lunch at <strong>Broodje Bert</strong> (famous Dutch sandwiches) or <strong>Winkel 43</strong> (apple pie + soup)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Wander Jordaan & 9 Straatjes</strong> (quaint canals, boutique shops)</li>
+                                <li><strong>Anne Frank House</strong> (if you pre-booked tickets—<strong>essential to book weeks ahead!</strong>)</li>
+                                <li>If no Anne Frank tickets: <strong>Westerkerk Tower</strong> (indoor climb with city views)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Covered Canal Cruise</strong> (with glühwein—perfect winter activity!)</li>
+                                <li>Casual dinner at <strong>Moeders</strong> (Dutch comfort food) or <strong>Foodhallen</strong> (indoor food market)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 2: Museums & Cozy Winter Vibes</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Van Gogh Museum</strong> (pre-booked tickets)</li>
+                                <li><strong>Rijksmuseum</strong> (Rembrandt, Vermeer—skip if short on time)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Lunch at <strong>The Avocado Show</strong> (healthy & insta-worthy) or <strong>Black & Blue</strong> (cozy steakhouse)</li>
+                                <li><strong>Stedelijk Museum</strong> (modern art) or <strong>FOAM Photography Museum</strong></li>
+                                <li><strong>Vondelpark winter walk</strong> (if dry) or <strong>Hortus Botanicus</strong> (tropical greenhouse escape)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Mulled wine at <strong>Café 't Smalle</strong> (historic brown café)</li>
+                                <li>Dinner at <strong>Restaurant Floreyn</strong> (modern Dutch)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 3: Local Life & Fancy Dinner</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Albert Cuyp Market</strong> (try <em>stroopwafels</em> & Dutch cheese)</li>
+                                <li><strong>Heineken Experience</strong> (if you like beer—otherwise skip)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Lunch at <strong>De Bakkerswinkel</strong> (quaint tearoom) or <strong>Soup en Zo</strong> (warming soups)</li>
+                                <li><strong>Rembrandt House Museum</strong> (where he painted <em>Night Watch</em>)</li>
+                                <li><strong>Waterlooplein Flea Market</strong> (vintage finds)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Fancy Dinner at Restaurant Bougainville</strong> (Michelin-starred, Dam Square views) <strong>OR</strong></li>
+                                <li><strong>De Kas</strong> (farm-to-table in a greenhouse)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 4: Winter Day Trip or Festive Amsterdam</h3>
+                        
+                        <div class="itinerary-option">
+                            <strong>Option 1: Day Trip</strong>
+                            <ul>
+                                <li><strong>Zaanse Schans</strong> (windmills + cheese tasting—20 min away)</li>
+                                <li><strong>Haarlem</strong> (medieval charm + Christmas markets—15 min by train)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-option">
+                            <strong>Option 2: Amsterdam Highlights</strong>
+                            <ul>
+                                <li><strong>A'DAM Lookout</strong> (indoor sky deck with heated swings)</li>
+                                <li><strong>NDSM Wharf</strong> (hipster street art—take the free ferry)</li>
+                                <li><strong>Ice-skating at Rembrandtplein</strong> (seasonal rink)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Final dinner at <strong>Café de Klos</strong> (best ribs) or <strong>Bistro Bar Spek</strong> (cozy French-Dutch)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="food-tour">
+                        <h3 class="food-tour-title">Food Tours</h3>
+                        <p>Consider these food tours to experience Amsterdam's culinary scene:</p>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Eating Europe: Amsterdam Jordaan Food and Drinks Tour</strong> - <a href="https://www.eatingeurope.com/amsterdam/" class="external-link" target="_blank">Learn more</a></li>
+                                <li><strong>Eating Amsterdam: Albert Cuyp Market and the Pijp Food Tour</strong> - <a href="https://www.eatingeurope.com/amsterdam/" class="external-link" target="_blank">Learn more</a></li>
+                            </ul>
+                        </div>
+                        <p class="help-text">Check availability and book in advance, especially during the holiday season.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="amsterdam-hotels">
+                <h2 class="section-title">Hotels</h2>
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Pulitzer Amsterdam</div>
+                            <div class="hotel-address">Prinsengracht 323, 1016 GZ Amsterdam, Netherlands</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Pulitzer Amsterdam"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">The Hoxton, Amsterdam</div>
+                            <div class="hotel-address">Herengracht 255, 1016 BJ Amsterdam, Netherlands</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="The Hoxton, Amsterdam"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Conservatorium Hotel</div>
+                            <div class="hotel-address">Van Baerlestraat 27, 1071 AN Amsterdam, Netherlands</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Conservatorium Hotel"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="amsterdam-favorites">
+                <h2 class="section-title">Favorites</h2>
+                <div id="amsterdam-favorites-list">
+                    <!-- Favorites will be populated by JavaScript -->
+                </div>
+            </div>
         </div>
 
+        <!-- Lucerne Detail View -->
         <div id="lucerne-view" class="city-detail" data-city="Lucerne">
             <div class="breadcrumbs">
-                <a href="#" class="breadcrumb" id="home-link-lucerne">Home</a>
+                <a href="#" class="breadcrumb home-link">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Lucerne</span>
             </div>
@@ -589,14 +921,20 @@
                 <p>Explore the beautiful Swiss city of Lucerne from December 24-27.</p>
                 
                 <div class="nav-buttons">
-                    <button class="btn" id="lucerne-poi-btn">
+                    <button class="btn btn-secondary" id="lucerne-poi-btn">
                         <i class="fas fa-map-marker-alt"></i> Points of Interest
                     </button>
-                    <button class="btn btn-secondary" id="lucerne-map-btn">
+                    <button class="btn" id="lucerne-map-btn">
                         <i class="fas fa-map-marked-alt"></i> Interactive Map
                     </button>
-                    <button class="btn btn-accent">
+                    <button class="btn" id="lucerne-itinerary-btn">
+                        <i class="fas fa-calendar-alt"></i> Suggested Itinerary
+                    </button>
+                    <button class="btn" id="lucerne-hotels-btn">
                         <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn" id="lucerne-favorites-btn">
+                        <i class="fas fa-star"></i> Favorites
                     </button>
                 </div>
             </div>
@@ -644,6 +982,26 @@
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Swiss Museum of Transport</div>
+                            <div class="poi-desc">Large museum exhibiting all forms of transport including rail, air, and automotive</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Swiss Museum of Transport"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Mount Pilatus</div>
+                            <div class="poi-desc">Mountain peak accessible by cable car with stunning views of the Alps</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Mount Pilatus"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
@@ -653,11 +1011,365 @@
                     <iframe src="https://www.google.com/maps/d/embed?mid=1bPC5sAbdJ3-Ub9DRmv3MVK3Eiu6wqzg&ehbc=2E312F" width="100%" height="100%"></iframe>
                 </div>
             </div>
+
+            <div class="section tab-content" id="lucerne-itinerary">
+                <h2 class="section-title">Suggested Itinerary</h2>
+                <div class="itinerary">
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 1: Arrival and Old Town Exploration</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Arrive in Lucerne and check into your hotel</strong></li>
+                                <li>Take a stroll along the <strong>Chapel Bridge</strong> and visit the <strong>Water Tower</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Lion Monument</strong> and learn about its history</li>
+                                <li>Explore the <strong>Old Town</strong> with its picturesque squares and historic buildings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Enjoy a traditional Swiss fondue dinner at <strong>Restaurant Pfistern</strong></li>
+                                <li>Take an evening walk along the lakefront</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 2: Mountain Excursion</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Take a boat trip on <strong>Lake Lucerne</strong></li>
+                                <li>Ascend <strong>Mount Pilatus</strong> via the world's steepest cogwheel railway</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Enjoy lunch with a view at the mountain summit restaurant</li>
+                                <li>Hike along the mountain trails (weather permitting)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Return to Lucerne and relax at a local café</li>
+                                <li>Dine at a restaurant with traditional Swiss cuisine</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 3: Culture and Departure</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Swiss Museum of Transport</strong></li>
+                                <li>Explore the <strong>Bourbaki Panorama</strong>, a circular painting depicting the Franco-Prussian War</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Last-minute souvenir shopping in the old town</li>
+                                <li>Enjoy a farewell lunch at a lakeside restaurant</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="lucerne-hotels">
+                <h2 class="section-title">Hotels</h2>
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Hotel Schweizerhof Luzern</div>
+                            <div class="hotel-address">Schweizerhofquai 3, 6002 Luzern, Switzerland</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Hotel Schweizerhof Luzern"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Grand Hotel National Luzern</div>
+                            <div class="hotel-address">Haldenstrasse 4, 6002 Luzern, Switzerland</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Grand Hotel National Luzern"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Hotel des Balances</div>
+                            <div class="hotel-address">Weinmarkt, 6004 Luzern, Switzerland</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Hotel des Balances"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="lucerne-favorites">
+                <h2 class="section-title">Favorites</h2>
+                <div id="lucerne-favorites-list">
+                    <!-- Favorites will be populated by JavaScript -->
+                </div>
+            </div>
         </div>
 
+        <!-- Innsbruck Detail View -->
+        <div id="innsbruck-view" class="city-detail" data-city="Innsbruck">
+            <div class="breadcrumbs">
+                <a href="#" class="breadcrumb home-link">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb">Innsbruck</span>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Innsbruck</h2>
+                <p>Explore the beautiful Austrian city of Innsbruck from December 27-29.</p>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="innsbruck-poi-btn">
+                        <i class="fas fa-map-marker-alt"></i> Points of Interest
+                    </button>
+                    <button class="btn" id="innsbruck-map-btn">
+                        <i class="fas fa-map-marked-alt"></i> Interactive Map
+                    </button>
+                    <button class="btn" id="innsbruck-itinerary-btn">
+                        <i class="fas fa-calendar-alt"></i> Suggested Itinerary
+                    </button>
+                    <button class="btn" id="innsbruck-hotels-btn">
+                        <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn" id="innsbruck-favorites-btn">
+                        <i class="fas fa-star"></i> Favorites
+                    </button>
+                </div>
+            </div>
+
+            <div class="section tab-content active" id="innsbruck-poi">
+                <h2 class="section-title">Points of Interest</h2>
+                <ul class="poi-list">
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Nordkette</div>
+                            <div class="poi-desc">Mountain range accessible via cable car with stunning views of Innsbruck</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Nordkette Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Court Church</div>
+                            <div class="poi-desc">Gothic church with the tomb of Emperor Maximilian I</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Court Church Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Altstadt von Innsbruck</div>
+                            <div class="poi-desc">Historic old town with colorful buildings and medieval architecture</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Altstadt von Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Ambras Castle</div>
+                            <div class="poi-desc">Renaissance castle and museum with beautiful gardens</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Ambras Castle"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Bergisel Ski Jump</div>
+                            <div class="poi-desc">Olympic ski jump with panoramic views and a café designed by Zaha Hadid</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Bergisel Ski Jump"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Tyrolean State Museums</div>
+                            <div class="poi-desc">Museum complex showcasing Tyrolean art, culture, and history</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Tyrolean State Museums"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section tab-content" id="innsbruck-map">
+                <h2 class="section-title">Interactive Map</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1qkcOeNUvtIpcOPMOiZz4D4yI6obW2GM&ehbc=2E312F" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="innsbruck-itinerary">
+                <h2 class="section-title">Suggested Itinerary</h2>
+                <div class="itinerary">
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 1: Arrival and Old Town Exploration</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Arrive in Innsbruck and check into your hotel</strong></li>
+                                <li>Take a walking tour of the <strong>Old Town</strong>, including the Golden Roof</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Court Church</strong> with its famous Black Men statues</li>
+                                <li>Explore the <strong>Imperial Palace</strong> (Hofburg)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Enjoy traditional Tyrolean cuisine at a local restaurant</li>
+                                <li>Stroll through the Christmas markets (seasonal)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 2: Mountain Adventure</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Take the Nordkette Cable Car to the <strong>Top of Innsbruck</strong></li>
+                                <li>Enjoy breathtaking views of the Alps</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Bergisel Ski Jump</strong> and its panoramic café</li>
+                                <li>Explore <strong>Ambras Castle</strong> and its collections</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Relax at a traditional Austrian beer hall</li>
+                                <li>Enjoy dinner with views of the illuminated city</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 3: Culture and Departure</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Tyrolean State Museums</strong></li>
+                                <li>Explore the <strong>Tyrol Panorama</strong> with its giant circular painting</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Last-minute souvenir shopping for local specialties</li>
+                                <li>Enjoy a farewell lunch at a traditional Gasthaus</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="innsbruck-hotels">
+                <h2 class="section-title">Hotels</h2>
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Grand Hotel Europa</div>
+                            <div class="hotel-address">Südtiroler Platz 2, 6020 Innsbruck, Austria</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Grand Hotel Europa"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Hotel Innsbruck</div>
+                            <div class="hotel-address">Innrain 3, 6020 Innsbruck, Austria</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Hotel Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">AC Hotel Innsbruck</div>
+                            <div class="hotel-address">Salurner Strasse 15, 6020 Innsbruck, Austria</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="AC Hotel Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="innsbruck-favorites">
+                <h2 class="section-title">Favorites</h2>
+                <div id="innsbruck-favorites-list">
+                    <!-- Favorites will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Vienna Detail View -->
         <div id="vienna-view" class="city-detail" data-city="Vienna">
             <div class="breadcrumbs">
-                <a href="#" class="breadcrumb" id="home-link-vienna">Home</a>
+                <a href="#" class="breadcrumb home-link">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Vienna</span>
             </div>
@@ -667,14 +1379,20 @@
                 <p>Explore the beautiful Austrian capital of Vienna from December 29 to January 1.</p>
                 
                 <div class="nav-buttons">
-                    <button class="btn" id="vienna-poi-btn">
+                    <button class="btn btn-secondary" id="vienna-poi-btn">
                         <i class="fas fa-map-marker-alt"></i> Points of Interest
                     </button>
-                    <button class="btn btn-secondary" id="vienna-map-btn">
+                    <button class="btn" id="vienna-map-btn">
                         <i class="fas fa-map-marked-alt"></i> Interactive Map
                     </button>
-                    <button class="btn btn-accent">
+                    <button class="btn" id="vienna-itinerary-btn">
+                        <i class="fas fa-calendar-alt"></i> Suggested Itinerary
+                    </button>
+                    <button class="btn" id="vienna-hotels-btn">
                         <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn" id="vienna-favorites-btn">
+                        <i class="fas fa-star"></i> Favorites
                     </button>
                 </div>
             </div>
@@ -751,79 +1469,136 @@
                     <iframe src="https://www.google.com/maps/d/embed?mid=1DgnSmYZql1CuU_mw8oOCcWDGoBxMF_8&ehbc=2E312F" width="100%" height="100%"></iframe>
                 </div>
             </div>
-        </div>
 
-        <div id="innsbruck-view" class="city-detail" data-city="Innsbruck">
-            <div class="breadcrumbs">
-                <a href="#" class="breadcrumb" id="home-link-innsbruck">Home</a>
-                <span class="breadcrumb-separator">/</span>
-                <span class="breadcrumb">Innsbruck</span>
-            </div>
+            <div class="section tab-content" id="vienna-itinerary">
+                <h2 class="section-title">Suggested Itinerary</h2>
+                <div class="itinerary">
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 1: Imperial Vienna</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Arrive in Vienna and check into your hotel</strong></li>
+                                <li>Visit <strong>Schönbrunn Palace</strong> and explore its magnificent gardens</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Explore the <strong>Hofburg Palace</strong> complex</li>
+                                <li>Visit the <strong>Spanish Riding School</strong> (if performances are scheduled)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Attend a classical concert or opera at the <strong>Vienna State Opera</strong></li>
+                                <li>Enjoy dinner at a traditional Viennese restaurant</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <div class="section">
-                <h2 class="section-title">Innsbruck</h2>
-                <p>Explore the beautiful Austrian city of Innsbruck from December 27-29.</p>
-                
-                <div class="nav-buttons">
-                    <button class="btn" id="innsbruck-poi-btn">
-                        <i class="fas fa-map-marker-alt"></i> Points of Interest
-                    </button>
-                    <button class="btn btn-secondary" id="innsbruck-map-btn">
-                        <i class="fas fa-map-marked-alt"></i> Interactive Map
-                    </button>
-                    <button class="btn btn-accent">
-                        <i class="fas fa-hotel"></i> Hotels
-                    </button>
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 2: Art and Culture</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Belvedere Palace</strong> to see Klimt's "The Kiss"</li>
+                                <li>Explore the <strong>Museum Quarter</strong> (Museumsquartier)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Tour <strong>St. Stephen's Cathedral</strong> and climb the South Tower</li>
+                                <li>Explore the <strong>Naschmarkt</strong> for lunch and local delicacies</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Experience Vienna's coffee house culture at <strong>Café Central</strong></li>
+                                <li>Take a evening stroll through the city center</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 3: Parks and Departure</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Vienna Prater</strong> and ride the Giant Ferris Wheel</li>
+                                <li>Explore the <strong>Stadtpark</strong> with its famous Johann Strauss monument</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Last-minute souvenir shopping for Mozartkugeln and other treats</li>
+                                <li>Enjoy a farewell lunch at a Heuriger (traditional wine tavern)</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="section tab-content active" id="innsbruck-poi">
-                <h2 class="section-title">Points of Interest</h2>
-                <ul class="poi-list">
-                    <li class="poi-item">
-                        <div class="poi-info">
-                            <div class="poi-name">Nordkette</div>
-                            <div class="poi-desc">Mountain range accessible via cable car with stunning views of Innsbruck</div>
+            <div class="section tab-content" id="vienna-hotels">
+                <h2 class="section-title">Hotels</h2>
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Hotel Sacher Wien</div>
+                            <div class="hotel-address">Philharmoniker Str. 4, 1010 Wien, Austria</div>
                         </div>
-                        <div class="poi-actions">
-                            <button class="action-btn map-btn" data-poi="Nordkette Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Hotel Sacher Wien"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
-                    </li>
-                    <li class="poi-item">
-                        <div class="poi-info">
-                            <div class="poi-name">Court Church</div>
-                            <div class="poi-desc">Gothic church with the tomb of Emperor Maximilian I</div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Park Hyatt Vienna</div>
+                            <div class="hotel-address">Am Hof 2, 1010 Wien, Austria</div>
                         </div>
-                        <div class="poi-actions">
-                            <button class="action-btn map-btn" data-poi="Court Church Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Park Hyatt Vienna"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
-                    </li>
-                    <li class="poi-item">
-                        <div class="poi-info">
-                            <div class="poi-name">Altstadt von Innsbruck</div>
-                            <div class="poi-desc">Historic old town with colorful buildings and medieval architecture</div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">The Ritz-Carlton, Vienna</div>
+                            <div class="hotel-address">Schubertring 5-7, 1010 Wien, Austria</div>
                         </div>
-                        <div class="poi-actions">
-                            <button class="action-btn map-btn" data-poi="Altstadt von Innsbruck"><i class="fas fa-map-marker-alt"></i></button>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="The Ritz-Carlton, Vienna"><i class="fas fa-map-marker-alt"></i></button>
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
 
-            <div class="section tab-content" id="innsbruck-map">
-                <h2 class="section-title">Interactive Map</h2>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/d/embed?mid=1qkcOeNUvtIpcOPMOiZz4D4yI6obW2GM&ehbc=2E312F" width="100%" height="100%"></iframe>
+            <div class="section tab-content" id="vienna-favorites">
+                <h2 class="section-title">Favorites</h2>
+                <div id="vienna-favorites-list">
+                    <!-- Favorites will be populated by JavaScript -->
                 </div>
             </div>
         </div>
 
+        <!-- Madrid Detail View -->
         <div id="madrid-view" class="city-detail" data-city="Madrid">
             <div class="breadcrumbs">
-                <a href="#" class="breadcrumb" id="home-link-madrid">Home</a>
+                <a href="#" class="breadcrumb home-link">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb">Madrid</span>
             </div>
@@ -833,14 +1608,20 @@
                 <p>Explore the beautiful Spanish capital of Madrid from January 1-5.</p>
                 
                 <div class="nav-buttons">
-                    <button class="btn" id="madrid-poi-btn">
+                    <button class="btn btn-secondary" id="madrid-poi-btn">
                         <i class="fas fa-map-marker-alt"></i> Points of Interest
                     </button>
-                    <button class="btn btn-secondary" id="madrid-map-btn">
+                    <button class="btn" id="madrid-map-btn">
                         <i class="fas fa-map-marked-alt"></i> Interactive Map
                     </button>
-                    <button class="btn btn-accent">
+                    <button class="btn" id="madrid-itinerary-btn">
+                        <i class="fas fa-calendar-alt"></i> Suggested Itinerary
+                    </button>
+                    <button class="btn" id="madrid-hotels-btn">
                         <i class="fas fa-hotel"></i> Hotels
+                    </button>
+                    <button class="btn" id="madrid-favorites-btn">
+                        <i class="fas fa-star"></i> Favorites
                     </button>
                 </div>
             </div>
@@ -878,6 +1659,36 @@
                             <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
                         </div>
                     </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Royal Palace of Madrid</div>
+                            <div class="poi-desc">Official residence of the Spanish Royal Family with opulent interiors</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Royal Palace of Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Plaza Mayor</div>
+                            <div class="poi-desc">Grand square in the heart of Madrid, surrounded by historic buildings</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Plaza Mayor Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
+                    <li class="poi-item">
+                        <div class="poi-info">
+                            <div class="poi-name">Reina Sofía Museum</div>
+                            <div class="poi-desc">Modern art museum housing Picasso's famous Guernica painting</div>
+                        </div>
+                        <div class="poi-actions">
+                            <button class="action-btn map-btn" data-poi="Reina Sofía Museum"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
@@ -885,6 +1696,130 @@
                 <h2 class="section-title">Interactive Map</h2>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/d/embed?mid=18cSHWdfTP4af9L7uBQZdJ8922_7Vdmw&ehbc=2E312F" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="madrid-itinerary">
+                <h2 class="section-title">Suggested Itinerary</h2>
+                <div class="itinerary">
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 1: Royal Madrid</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li><strong>Arrive in Madrid and check into your hotel</strong></li>
+                                <li>Visit the <strong>Royal Palace of Madrid</strong> and its beautiful gardens</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Explore the <strong>Plaza Mayor</strong> and surrounding streets</li>
+                                <li>Visit the <strong>Almudena Cathedral</strong> next to the Royal Palace</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Enjoy tapas at <strong>Mercado San Miguel</strong></li>
+                                <li>Watch a flamenco show in the evening</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 2: Art and Culture</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Visit the <strong>Prado Museum</strong> to see works by Goya, Velázquez, and El Greco</li>
+                                <li>Stroll through the <strong>Botanical Garden</strong> nearby</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Explore the <strong>Reina Sofía Museum</strong> to see Picasso's Guernica</li>
+                                <li>Visit the <strong>Thyssen-Bornemisza Museum</strong> to complete the "Art Triangle"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Evening:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Enjoy dinner in the lively <strong>La Latina</strong> neighborhood</li>
+                                <li>Experience Madrid's nightlife in the <strong>Huertas</strong> area</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-day">
+                        <h3 class="itinerary-day-title">Day 3: Parks and Departure</h3>
+                        
+                        <div class="itinerary-time">Morning:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Spend the morning at <strong>El Retiro Park</strong>, rowing on the lake</li>
+                                <li>Visit the <strong>Palacio de Cristal</strong> glass palace in the park</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="itinerary-time">Afternoon:</div>
+                        <div class="itinerary-activities">
+                            <ul>
+                                <li>Last-minute shopping for souvenirs on <strong>Gran Vía</strong></li>
+                                <li>Enjoy a farewell lunch of authentic paella</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="madrid-hotels">
+                <h2 class="section-title">Hotels</h2>
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">The Westin Palace, Madrid</div>
+                            <div class="hotel-address">Plaza de las Cortes, 7, 28014 Madrid, Spain</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="The Westin Palace, Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Hotel Ritz Madrid</div>
+                        <div class="hotel-address">Plaza de la Lealtad, 5, 28014 Madrid, Spain</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Hotel Ritz Madrid"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            <div class="hotel-name">Gran Meliá Palacio de los Duques</div>
+                            <div class="hotel-address">Cuesta de Santo Domingo, 5, 28013 Madrid, Spain</div>
+                        </div>
+                        <div class="hotel-actions">
+                            <button class="action-btn map-btn" data-poi="Gran Meliá Palacio de los Duques"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section tab-content" id="madrid-favorites">
+                <h2 class="section-title">Favorites</h2>
+                <div id="madrid-favorites-list">
+                    <!-- Favorites will be populated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -906,7 +1841,7 @@
         const cityCards = document.querySelectorAll('.city-card');
         const cityViews = document.querySelectorAll('.city-detail');
         const homeView = document.getElementById('home-view');
-        const homeLinks = document.querySelectorAll('.breadcrumb');
+        const homeLinks = document.querySelectorAll('.home-link');
         
         cityCards.forEach(card => {
             card.addEventListener('click', () => {
@@ -927,7 +1862,14 @@
             cityViews.forEach(view => {
                 view.style.display = 'none';
             });
-            document.getElementById(`${city}-view`).style.display = 'block';
+            const cityView = document.getElementById(`${city}-view`);
+            if (cityView) {
+                cityView.style.display = 'block';
+                // Refresh favorites when switching cities
+                if (typeof renderFavorites === 'function') {
+                    renderFavorites(city);
+                }
+            }
             window.scrollTo(0, 0);
         }
 
@@ -940,35 +1882,145 @@
         }
 
         // Tab functionality for all cities
-        const setupTabButtons = (poiBtnId, mapBtnId, poiContentId, mapContentId) => {
+        const setupTabButtons = (poiBtnId, mapBtnId, itineraryBtnId, hotelsBtnId, favoritesBtnId, poiContentId, mapContentId, itineraryContentId, hotelsContentId, favoritesContentId) => {
             const poiBtn = document.getElementById(poiBtnId);
             const mapBtn = document.getElementById(mapBtnId);
+            const itineraryBtn = document.getElementById(itineraryBtnId);
+            const hotelsBtn = document.getElementById(hotelsBtnId);
+            const favoritesBtn = document.getElementById(favoritesBtnId);
             const poiContent = document.getElementById(poiContentId);
             const mapContent = document.getElementById(mapContentId);
+            const itineraryContent = document.getElementById(itineraryContentId);
+            const hotelsContent = document.getElementById(hotelsContentId);
+            const favoritesContent = document.getElementById(favoritesContentId);
 
-            if (poiBtn && mapBtn && poiContent && mapContent) {
-                poiBtn.addEventListener('click', () => {
-                    poiContent.classList.add('active');
-                    mapContent.classList.remove('active');
-                    poiBtn.classList.add('btn-secondary');
-                    mapBtn.classList.remove('btn-secondary');
+            const resetButtons = () => {
+                [poiBtn, mapBtn, itineraryBtn, hotelsBtn, favoritesBtn].forEach(btn => {
+                    if (btn) btn.classList.remove('btn-secondary');
                 });
+            };
 
+            const hideAllTabs = () => {
+                [poiContent, mapContent, itineraryContent, hotelsContent, favoritesContent].forEach(content => {
+                    if (content) content.classList.remove('active');
+                });
+            };
+
+            if (poiBtn && poiContent) {
+                poiBtn.addEventListener('click', () => {
+                    resetButtons();
+                    hideAllTabs();
+                    poiContent.classList.add('active');
+                    poiBtn.classList.add('btn-secondary');
+                });
+            }
+
+            if (mapBtn && mapContent) {
                 mapBtn.addEventListener('click', () => {
+                    resetButtons();
+                    hideAllTabs();
                     mapContent.classList.add('active');
-                    poiContent.classList.remove('active');
                     mapBtn.classList.add('btn-secondary');
-                    poiBtn.classList.remove('btn-secondary');
+                });
+            }
+
+            if (itineraryBtn && itineraryContent) {
+                itineraryBtn.addEventListener('click', () => {
+                    resetButtons();
+                    hideAllTabs();
+                    itineraryContent.classList.add('active');
+                    itineraryBtn.classList.add('btn-secondary');
+                });
+            }
+
+            if (hotelsBtn && hotelsContent) {
+                hotelsBtn.addEventListener('click', () => {
+                    resetButtons();
+                    hideAllTabs();
+                    hotelsContent.classList.add('active');
+                    hotelsBtn.classList.add('btn-secondary');
+                });
+            }
+
+            if (favoritesBtn && favoritesContent) {
+                favoritesBtn.addEventListener('click', () => {
+                    resetButtons();
+                    hideAllTabs();
+                    favoritesContent.classList.add('active');
+                    favoritesBtn.classList.add('btn-secondary');
+                    // Refresh favorites when the tab is clicked
+                    const cityElement = favoritesContent.closest('.city-detail');
+                    const city = cityElement.getAttribute('data-city');
+                    renderFavorites(city);
                 });
             }
         };
 
-        // Set up tabs for each city
-        setupTabButtons('amsterdam-poi-btn', 'amsterdam-map-btn', 'amsterdam-poi', 'amsterdam-map');
-        setupTabButtons('lucerne-poi-btn', 'lucerne-map-btn', 'lucerne-poi', 'lucerne-map');
-        setupTabButtons('vienna-poi-btn', 'vienna-map-btn', 'vienna-poi', 'vienna-map');
-        setupTabButtons('innsbruck-poi-btn', 'innsbruck-map-btn', 'innsbruck-poi', 'innsbruck-map');
-        setupTabButtons('madrid-poi-btn', 'madrid-map-btn', 'madrid-poi', 'madrid-map');
+        // Set up tabs for all cities
+        setupTabButtons(
+            'amsterdam-poi-btn', 
+            'amsterdam-map-btn', 
+            'amsterdam-itinerary-btn', 
+            'amsterdam-hotels-btn', 
+            'amsterdam-favorites-btn',
+            'amsterdam-poi', 
+            'amsterdam-map', 
+            'amsterdam-itinerary', 
+            'amsterdam-hotels', 
+            'amsterdam-favorites'
+        );
+        
+        setupTabButtons(
+            'lucerne-poi-btn', 
+            'lucerne-map-btn', 
+            'lucerne-itinerary-btn', 
+            'lucerne-hotels-btn', 
+            'lucerne-favorites-btn',
+            'lucerne-poi', 
+            'lucerne-map', 
+            'lucerne-itinerary', 
+            'lucerne-hotels', 
+            'lucerne-favorites'
+        );
+        
+        setupTabButtons(
+            'innsbruck-poi-btn', 
+            'innsbruck-map-btn', 
+            'innsbruck-itinerary-btn', 
+            'innsbruck-hotels-btn', 
+            'innsbruck-favorites-btn',
+            'innsbruck-poi', 
+            'innsbruck-map', 
+            'innsbruck-itinerary', 
+            'innsbruck-hotels', 
+            'innsbruck-favorites'
+        );
+        
+        setupTabButtons(
+            'vienna-poi-btn', 
+            'vienna-map-btn', 
+            'vienna-itinerary-btn', 
+            'vienna-hotels-btn', 
+            'vienna-favorites-btn',
+            'vienna-poi', 
+            'vienna-map', 
+            'vienna-itinerary', 
+            'vienna-hotels', 
+            'vienna-favorites'
+        );
+        
+        setupTabButtons(
+            'madrid-poi-btn', 
+            'madrid-map-btn', 
+            'madrid-itinerary-btn', 
+            'madrid-hotels-btn', 
+            'madrid-favorites-btn',
+            'madrid-poi', 
+            'madrid-map', 
+            'madrid-itinerary', 
+            'madrid-hotels', 
+            'madrid-favorites'
+        );
 
         // Initialize favorites
         if (!localStorage.getItem('travelFavorites')) {
@@ -978,30 +2030,138 @@
         // Add event listeners to all star buttons
         document.querySelectorAll('.star-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                const poiItem = this.closest('.poi-item');
-                const poiName = poiItem.querySelector('.poi-name').textContent;
-                let favorites = JSON.parse(localStorage.getItem('travelFavorites'));
+                const itemElement = this.closest('.poi-item, .hotel-item');
+                const name = itemElement.querySelector('.poi-name, .hotel-name').textContent;
+                const description = itemElement.querySelector('.poi-desc, .hotel-address').textContent;
+                const type = itemElement.classList.contains('poi-item') ? 'poi' : 'hotel';
+                const cityElement = itemElement.closest('.city-detail');
+                const city = cityElement ? cityElement.getAttribute('data-city') : '';
                 
-                if (favorites.includes(poiName)) {
-                    favorites = favorites.filter(item => item !== poiName);
+                let favorites = JSON.parse(localStorage.getItem('travelFavorites'));
+                const existingIndex = favorites.findIndex(fav => fav.name === name && fav.city === city);
+                
+                if (existingIndex >= 0) {
+                    // Remove from favorites
+                    favorites.splice(existingIndex, 1);
                     this.innerHTML = '<i class="fas fa-star"></i>';
-                    this.style.color = '';
+                    this.classList.remove('starred');
                 } else {
-                    favorites.push(poiName);
+                    // Add to favorites
+                    favorites.push({
+                        name: name,
+                        description: description,
+                        type: type,
+                        city: city
+                    });
                     this.innerHTML = '<i class="fas fa-check"></i>';
-                    this.style.color = '#ffc107';
+                    this.classList.add('starred');
                 }
                 
                 localStorage.setItem('travelFavorites', JSON.stringify(favorites));
+                
+                // Show toast notification
+                const toast = document.getElementById('toast');
+                toast.textContent = existingIndex >= 0 ? 
+                    `Removed ${name} from favorites!` : 
+                    `Added ${name} to favorites!`;
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
             });
         });
+
+        // Render favorites for a specific city
+        function renderFavorites(city) {
+            const favoritesList = document.getElementById(`${city.toLowerCase()}-favorites-list`);
+            if (!favoritesList) return;
+            
+            const favorites = JSON.parse(localStorage.getItem('travelFavorites'));
+            const cityFavorites = favorites.filter(fav => fav.city === city);
+            
+            if (cityFavorites.length === 0) {
+                favoritesList.innerHTML = `
+                    <div class="favorites-empty">
+                        <i class="fas fa-star"></i>
+                        <h3>No favorites yet</h3>
+                        <p>Star points of interest or hotels to add them to your favorites</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            cityFavorites.forEach(fav => {
+                html += `
+                    <div class="${fav.type === 'poi' ? 'poi-item' : 'hotel-item'}">
+                        <div class="${fav.type === 'poi' ? 'poi-info' : 'hotel-info'}">
+                            <div class="${fav.type === 'poi' ? 'poi-name' : 'hotel-name'}">${fav.name}</div>
+                            <div class="${fav.type === 'poi' ? 'poi-desc' : 'hotel-address'}">${fav.description}</div>
+                        </div>
+                        <div class="${fav.type === 'poi' ? 'poi-actions' : 'hotel-actions'}">
+                            <button class="action-btn map-btn" data-poi="${fav.name} ${fav.city}"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="action-btn star-btn starred"><i class="fas fa-check"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            favoritesList.innerHTML = html;
+            
+            // Reattach event listeners to the new star buttons
+            favoritesList.querySelectorAll('.star-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemElement = this.closest('.poi-item, .hotel-item');
+                    const name = itemElement.querySelector('.poi-name, .hotel-name').textContent;
+                    
+                    let favorites = JSON.parse(localStorage.getItem('travelFavorites'));
+                    const existingIndex = favorites.findIndex(fav => fav.name === name && fav.city === city);
+                    
+                    if (existingIndex >= 0) {
+                        favorites.splice(existingIndex, 1);
+                        localStorage.setItem('travelFavorites', JSON.stringify(favorites));
+                        renderFavorites(city); // Refresh the favorites list
+                    }
+                });
+            });
+            
+            // Reattach event listeners to map buttons
+            favoritesList.querySelectorAll('.map-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const poi = this.getAttribute('data-poi');
+                    
+                    // Generate Google Maps URL
+                    const query = encodeURIComponent(poi);
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+                    
+                    // Check if device is mobile
+                    const isMobile = isMobileDevice();
+                    
+                    if (isMobile) {
+                        window.location.href = mapsUrl;
+                    } else {
+                        window.open(mapsUrl, '_blank');
+                    }
+                    
+                    // Show toast notification
+                    const toast = document.getElementById('toast');
+                    toast.textContent = `Google Maps opened for ${poi}!`;
+                    toast.classList.add('show');
+                    
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                });
+            });
+        }
 
         // Map buttons - Generate Google Maps links with device-specific behavior
         document.querySelectorAll('.map-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const poi = this.getAttribute('data-poi');
                 const cityElement = this.closest('.city-detail');
-                const city = cityElement.getAttribute('data-city');
+                const city = cityElement ? cityElement.getAttribute('data-city') : '';
                 
                 // Generate Google Maps URL
                 const query = encodeURIComponent(`${poi}, ${city}`);
@@ -1043,6 +2203,20 @@
             poiButtons.forEach(btnId => {
                 const btn = document.getElementById(btnId);
                 if (btn) btn.classList.add('btn-secondary');
+            });
+            
+            // Initialize star button states based on saved favorites
+            const favorites = JSON.parse(localStorage.getItem('travelFavorites'));
+            document.querySelectorAll('.poi-item, .hotel-item').forEach(item => {
+                const name = item.querySelector('.poi-name, .hotel-name').textContent;
+                const cityElement = item.closest('.city-detail');
+                const city = cityElement ? cityElement.getAttribute('data-city') : '';
+                const starBtn = item.querySelector('.star-btn');
+                
+                if (favorites.some(fav => fav.name === name && fav.city === city)) {
+                    starBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    starBtn.classList.add('starred');
+                }
             });
         });
     </script>
