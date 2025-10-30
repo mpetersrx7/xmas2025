@@ -1,0 +1,463 @@
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a56d4;
+    --accent: #f72585;
+    --accent-light: #ff4da6;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --text: #495057;
+    --text-light: #6c757d;
+    --radius: 12px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 40px 0;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.city-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.city-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.city-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.city-dates {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.city-content {
+    padding: 25px;
+}
+
+.city-name {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.section {
+    background: white;
+    border-radius: var(--radius);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--dark);
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 2px;
+}
+
+.poi-list {
+    list-style: none;
+}
+
+.poi-item {
+    padding: 20px;
+    background: var(--light);
+    border-radius: var(--radius);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.poi-item:hover {
+    transform: translateX(5px);
+}
+
+.poi-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.poi-name {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+.poi-desc {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.poi-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    background: white;
+    color: var(--primary);
+    border: 1px solid #e9ecef;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.breadcrumb {
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.breadcrumb:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: var(--text-light);
+}
+
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.city-detail {
+    display: none;
+}
+
+#home-view {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .cities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .nav-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nav-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.external-link {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--primary);
+    transition: var(--transition);
+}
+
+.external-link:hover {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--light);
+    border-radius: var(--radius);
+}
+
+/* Itinerary styles */
+.itinerary {
+    margin-top: 30px;
+}
+
+.itinerary-day {
+    margin-bottom: 30px;
+}
+
+.itinerary-day-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.itinerary-time {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.itinerary-activities {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.itinerary-activities ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.itinerary-activities li {
+    margin-bottom: 8px;
+}
+
+.itinerary-food {
+    background-color: var(--light);
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-top: 10px;
+}
+
+.itinerary-food-title {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.itinerary-note {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.itinerary-option {
+    background-color: #e8f4fd;
+    border-left: 4px solid var(--primary);
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.food-tour {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-top: 30px;
+    border-left: 4px solid var(--accent);
+}
+
+.food-tour-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+/* POI Category Styles */
+.poi-category {
+    margin-bottom: 30px;
+}
+
+.poi-category-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.map-link-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.map-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.map-link:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.reservation-note {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
